@@ -16,10 +16,10 @@ public class MyThread extends Thread {
             }
         }
     }
+
     @Override
-    public void run () {
+    public void run() {
         biggestValue(myArray, startArray, endArray);
         finish = true;
-//        System.out.println("хай");
     }
 }
