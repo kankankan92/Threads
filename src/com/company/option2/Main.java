@@ -24,20 +24,16 @@ public class Main {
 
         System.out.println(Arrays.toString(myArray));
         for (int i = 0; i < QUANTITY_THREADS; i++) {
-            MyThread myThread = new MyThread();
+            int startArray = i * (ARRAY_LENGTH / QUANTITY_THREADS);
+            int endArray = (i + 1) * ARRAY_LENGTH / QUANTITY_THREADS - 1;
+            MyThread myThread = new MyThread(myArray, startArray, endArray);
             myThreads[i] = myThread;
-            myThread.myArray = myArray;
-            myThread.startArray = i * (ARRAY_LENGTH / QUANTITY_THREADS);
-            myThread.endArray = (i + 1) * ARRAY_LENGTH / QUANTITY_THREADS - 1;
             myThread.start();
         }
 
         while (Main.getWorkedThreads() != QUANTITY_THREADS) {
         }
-//
-//        System.out.println(myThreads[0].biggestValue);
-//        System.out.println(myThreads[1].biggestValue);
-//        System.out.println(myThreads[2].biggestValue);
+
         System.out.println(biggestValue(myThreads));
     }
 
